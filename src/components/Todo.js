@@ -22,6 +22,14 @@ export default class Todo extends Component {
     })
   }
 
+  deleteItem = (index) => {
+    const itemsUpdated = this.state.items
+    itemsUpdated.splice(index, 1)
+    this.setState({
+      items: itemsUpdated
+    })
+  }
+
   renderToDo = () => {
     return this.state.items.map((item, index) => {
       return (
@@ -29,7 +37,10 @@ export default class Todo extends Component {
           <div className='card-body'>
             <h4>
               {item.element}
-              <i className='fas fa-times' style={{ cursor: 'pointer', float: 'right', color: 'red' }}></i>
+              <i
+                className='fas fa-times'
+                style={{ cursor: 'pointer', float: 'right', color: 'red' }}
+                onClick={() => this.deleteItem(index)}></i>
             </h4>
           </div>
         </div>
